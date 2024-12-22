@@ -1,0 +1,17 @@
+<div class="task-list-container">
+    <div class="task-list-controls">
+        <button mat-button (click)="createTask()" class="task-list-button">
+            <mat-icon>add</mat-icon>
+            Nova tarefa
+        </button>
+        <button mat-button (click)="removeCompletedTasks()" class="task-list-button">
+            <mat-icon>delete</mat-icon>
+            Limpar concluídas
+        </button>
+    </div>
+    <div class="task-list" #taskList>
+        @for (task of taskService.getTasks(); track $index) {
+        <app-task [taskInformation]="task"></app-task>
+        }
+    </div>
+</div>

@@ -1,0 +1,40 @@
+<div [id]="taskInformation.id">
+    <div class="task-wrapper">
+        <div class="checkbox-wrapper-12">
+            <div class="cbx">
+                <input id="cbx-12" type="checkbox" [checked]="taskInformation.isConcluded"
+                    (click)="toggleTaskConcluded()" />
+                <label for="cbx-12"></label>
+                <svg width="15" height="14" viewbox="0 0 15 14" fill="none">
+                    <path d="M2 8.36364L6.23077 12L13 2"></path>
+                </svg>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+                <defs>
+                    <filter id="goo-12">
+                        <fegaussianblur in="SourceGraphic" stddeviation="4" result="blur"></fegaussianblur>
+                        <fecolormatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -7"
+                            result="goo-12"></fecolormatrix>
+                        <feblend in="SourceGraphic" in2="goo-12"></feblend>
+                    </filter>
+                </defs>
+            </svg>
+        </div>
+        <input #inputContent type="text" class="task-content" placeholder="digite o conteúdo da tarefa aqui"
+            [class]="taskInformation.isConcluded ? 'task-content-completed' : ''" [value]="taskInformation.content"
+            (input)="setTaskContent(inputContent.value)">
+        <button class="task-button" matTooltip="deletar tarefa" matTooltipPosition="below" (click)="deleteTask()">
+            <span class="material-symbols--delete-rounded"></span>
+        </button>
+    </div>
+    <div class="task-footer">
+        <div>
+            criado em {{ taskInformation.dateCreation | date : 'dd-MM-yyyy HH:mm:ss'}}
+        </div>
+        @if (taskInformation.dateConcluded) {
+        <div>
+            finalizada em {{ taskInformation.dateConcluded | date : 'dd-MM-yyyy HH:mm:ss'}}
+        </div>
+        }
+    </div>
+</div>
